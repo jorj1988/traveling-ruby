@@ -188,8 +188,8 @@ fi
 #######################################
 
 
-RUBY_MAJOR_MINOR=2.1
-RUBY_VERSION=2.1.5
+RUBY_MAJOR_MINOR=2.2
+RUBY_VERSION=2.2.0
 
 
 header "Preparing Ruby source code..."
@@ -217,6 +217,7 @@ if $SETUP_SOURCE; then
 	header "Configuring..."
 	./configure \
 		--prefix /tmp/ruby \
+		--enable-shared \
 		--disable-install-doc \
 		--disable-install-rdoc \
 		--disable-install-capi \
@@ -307,7 +308,7 @@ echo "+ Stripping libraries..."
 if [[ $? != 0 ]]; then
 	exit
 fi
-run rm /tmp/ruby/bin/{erb,rdoc,ri,testrb}
+run rm /tmp/ruby/bin/{erb,rdoc,ri}
 run rm -rf /tmp/ruby/share
 run rm -rf /tmp/ruby/lib/{libruby-static.a,pkgconfig}
 run rm -f /tmp/ruby/lib/ruby/gems/$RUBY_COMPAT_VERSION/cache/*
